@@ -6,17 +6,9 @@
   <title>Unity WebGL Player | PortraitLowQuality</title>
 </head>
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-  <button id="audio-button" onclick="playAudio()">Unmute</button>
   <canvas id="unity-canvas" width=540 height=960 tabindex="-1" style="width: 540px; height: 960px; background: #231F20"></canvas>
   <script src="Build/Builds.loader.js"></script>
   <script>
-    function playAudio() {
-      var audio = new Audio();
-      audio.src = 'door-close-big.wav';
-      audio.play();
-      document.getElementById('audio-button').style.display = 'none';
-    }
-
     function requestFullscreen(element) {
       if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -70,7 +62,7 @@
       companyName: "DefaultCompany",
       productName: "PortraitLowQuality",
       productVersion: "0.1.0",
-      matchWebGLToCanvasSize: false,
+      matchWebGLToCanvasSize: false,  // This line has been added to allow separate control
     });
   </script>
 </body>
