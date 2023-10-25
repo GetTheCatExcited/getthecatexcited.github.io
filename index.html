@@ -1,69 +1,40 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Unity WebGL Player | PortraitLowQuality</title>
-</head>
-<body style="text-align: center; padding: 0; border: 0; margin: 0;">
-  <canvas id="unity-canvas" width=540 height=960 tabindex="-1" style="width: 540px; height: 960px; background: #231F20"></canvas>
-  <script src="Build/Builds.loader.js"></script>
-  <script>
-    function requestFullscreen(element) {
-      if (element.requestFullscreen) {
-        element.requestFullscreen();
-      } else if (element.mozRequestFullScreen) { /* Firefox */
-        element.mozRequestFullScreen();
-      } else if (element.webkitRequestFullscreen) { /* Chrome, Safari, and Opera */
-        element.webkitRequestFullscreen();
-      } else if (element.msRequestFullscreen) { /* IE/Edge */
-        element.msRequestFullscreen();
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Swedbank Webbapp</title>
+  </head>
+  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
+    <canvas id="unity-canvas" width=450 height=800 style="width: 450px; height: 800px; background: #231F20"></canvas>
+    <script src="Build/Swebby.loader.js"></script>
+    <script>
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+
+        var canvas = document.querySelector("#unity-canvas");
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.position = "fixed";
+
+        document.body.style.textAlign = "left";
       }
-    }
 
-    function maintainAspectRatio() {
-      var canvas = document.getElementById('unity-canvas');
-      var windowAspectRatio = window.innerWidth / window.innerHeight;
-      var targetAspectRatio = 9 / 16;
-      if (windowAspectRatio > targetAspectRatio) {
-        // If window aspect ratio is wider than target, constrain width
-        canvas.style.width = (window.innerHeight * targetAspectRatio) + 'px';
-        canvas.style.height = window.innerHeight + 'px';
-      } else {
-        // If window aspect ratio is narrower than target, constrain height
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = (window.innerWidth / targetAspectRatio) + 'px';
-      }
-    }
-
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      var meta = document.createElement('meta');
-      meta.name = 'viewport';
-      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-      document.getElementsByTagName('head')[0].appendChild(meta);
-
-      var canvas = document.querySelector("#unity-canvas");
-      canvas.style.width = "100%";
-      canvas.style.height = "100%";
-      canvas.style.position = "fixed";
-
-      document.body.style.textAlign = "left";
-      requestFullscreen(document.getElementById('unity-canvas'));
-    } else {
-      maintainAspectRatio();
-      window.addEventListener('resize', maintainAspectRatio);
-    }
-
-    createUnityInstance(document.querySelector("#unity-canvas"), {
-      dataUrl: "Build/Builds.data",
-      frameworkUrl: "Build/Builds.framework.js",
-      codeUrl: "Build/Builds.wasm",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "DefaultCompany",
-      productName: "PortraitLowQuality",
-      productVersion: "0.1.0",
-      matchWebGLToCanvasSize: false,  // This line has been added to allow separate control
-    });
-  </script>
-</body>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/Swebby.data",
+        frameworkUrl: "Build/Swebby.framework.js",
+        codeUrl: "Build/Swebby.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "Swedbank Webbapp",
+        productVersion: "0.1.0",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      });
+    </script>
+  </body>
 </html>
