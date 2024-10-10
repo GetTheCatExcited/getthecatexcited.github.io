@@ -1,846 +1,858 @@
 <style>
-  /* DEBUG */
-  /* html {
-      scroll-behavior: smooth;
-  } */
-
-  * {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  }
-
-  .coe-main * {
-      --background-color: #061C34;
-
-      --text-color--primary: #989898;
-      --text-color--secondary: #E5E5E5;
-
-      margin: 0px;
-      padding: 0px;
-      box-sizing: border-box;
-      list-style: none;
-      text-decoration: none; 
-      text-transform: none;
-      font-size: 18px;
-      font-family: 'Arial', sans-serif;
-      font-weight: normal;
-      color: var(--text-color--primary);
-      
-      /* Debug */
-      /* border: 1px solid red; */
-  }
-
-  .coe-main {
-      margin-top: 40px; /* STICKY HEADER HEIGHT*/
-      width: 100%;
-  }
-
-  .coe-main h1 {
-      font-size: 34px;
-      text-align: center;
-      line-height: 34px;
-      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-      color: var(--text-color--secondary);
-  }
-
-  .coe-main h2 {
-      padding: 6px 12px;
-      font-size: 14px;
-      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 100%);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, .11);
-  }
-
-  .coe-main h3 {
-      font-size: 30;
-      text-align: center;
-  }
-
-  .coe-main p {
-      line-height: 26px;
-  }
-
-  .coe-main section:not(.coe-hero) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: var(--background-color);
-      padding: 45px 0px 0px 0px;
-      gap: 35px;
-
-      &:not(.coe-challenges):not(.coe-partners) {
-          background-image: radial-gradient(circle at center top, #113054, #0C223C 50%);
-          padding-bottom: 45px;
-      }
-  }
-
-  .coe-sticky-header {
-      background-color: black;        
-      position: fixed;
-      top: 0;
-      z-index: 100;
-      width: 100%;
-      height: 40px;
-
-      > img {
-          padding: 10px;
-          height: 100%;
-      }
-  }
-
-  .coe-gradient-text {
-      background-image: linear-gradient(to right, #666, #fff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-  }
-
-  @media screen and (max-width: 639px) {
-      .coe-grid-filler {
-          display: none;
-      }
-
-      .coe-challenges__list {
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      }
-  }
-  @media screen and (min-width: 640px) {
-      .coe-grid-filler {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-      }
-
-      .coe-challenges__list {
-          gap: 20px;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      }
-  }
-
-  /* HERO */
-  .coe-hero {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 300px;
-  }
-
-  .coe-media-background {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: black;
-  }
-  
-  .coe-hero__content {
-      z-index: 3;
-      width: 90%;
-      margin-top: 20px;
-  }
-
-  .coe-cases > h3, .coe-cases > p {
-      text-align: center;
-      padding: 0px 24px;
-      width: min(100%, 600px)
-  }
-
-  .coe-offerings > h3, .coe-offerings > p {
-      text-align: center;
-      padding: 0px 24px;
-      width: min(100%, 600px)
-  }
-
-  /* CHALLENGES */
-  .coe-challenges > h3, .coe-challenges > p {
-      text-align: center;
-      padding: 0px 24px;
-      width: min(100%, 600px)
-  }
-
-  .coe-challenges__list {
-      margin-top: 10px;
-      display: grid;
-      width: min(100%, 1100px);
-  }
-
-  .coe-challenges__item {
-      display: flex;
-      flex-direction: column;
-      padding: 45px 24px;
-      gap: 35px;
-
-      > h4 {
-          font-size: 30px;
-          width: 90%;
-      }
-  }
-
-  .coe-challenges__item:nth-child(odd) {
-      background-image: radial-gradient(farthest-corner at 40px 40px, #113054 0%, #0C223C 100%);
-
-      & > img {
-          margin: 10px 0px;
-          height: 170px;
-          object-fit: cover;
-      }
-  }
-
-  .coe-challenges__item:nth-child(even) {
-      position: relative;
-      padding-bottom: 260px;
-
-      z-index: 1;
-
-      & > img {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          object-fit: cover;
-          z-index: -1;
-          filter: brightness(30%);
-      }
-  }
-
-  /* CASES */
-  .coe-cases__wrapper {
-      margin-top: 10px;
-      scroll-snap-type: x mandatory;
-      width: min(930px, 100%);
-  }
-
-  .coe-cases__scroll-container {
-      width: 100%;
-      overflow-x: scroll;
-      position: relative;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      
-      &::-webkit-scrollbar {
-          display: none;
-      }
-  }
-
-  .coe-cases__list {
-      display: grid;
-      grid-auto-flow: column;
-      width: fit-content;
-      gap: 20px;
-      margin: 0px 500px; /* FIX */
-  }
-  
-
-  .coe-cases__item {
-      width: 295px;
-      height: 350px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      scroll-snap-align: center;
-      border: 2px solid transparent;
-      border-radius: 1em;
-      position: relative;
-      padding: 1em;
-
-      &::before {
-          content: "";
-          position: absolute;
-          top: -2px; /* BORDER PX*/
-          left: -2px; /* BORDER PX*/
-          width: 100%;
-          height: 100%;
-
-          background: linear-gradient(180deg, #7f7f7f, rgba(0, 0, 0, 0)) border-box;
-          border: inherit;
-          border-radius: inherit; 
-          mask: 
-              linear-gradient(white, white) padding-box,
-              linear-gradient(white, white);
-          mask-composite: exclude;
-      }
-
-      > h4 {
-          font-size: 22px;
-          width: 66%;
-      }
-
-      > p {
-          font-size: 14px;
-          font-weight: bold;
-          line-height: 18px;
-      }
-
-      > a {
-          width: 26px;
-          height: 26px;
-          position: absolute;
-          bottom: 80px;
-          right: 20px;
-      }
-  }
-
-  .coe-cases__tab-list-container {
-      width: min(40%, 300px)
-  }
-
-  .coe-cases__tab-list {
-      display: flex;
-  }
-
-  .coe-cases__tab {
-      display: flex;
-      flex-grow: 1;
-      justify-content: center;
-  }
-
-  .coe-cases__tab > a {
-      background-color: #e0e0e0;
-      height: 8px;
-      width: 8px;
-      border-radius: 4px;
-  }
-
-  .coe-cases__tab--active > a  {
-      width: 100%;
-  }
-
-  /* OFFERINGS */
-  .coe-offerings__list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      width: min(100%, 700px);
-      padding: 25px 24px;
-      row-gap: 40px;
-      justify-items: stretch;
-
-      /* > :last-child {
-          grid-column: span 2;
-      } */
-  }
-
-  .coe-offerings__item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-
-      & > img {
-          width: 40px;
-          height: 40px;
-      }
-
-      > h4 {
-          font-size: 14;
-          font-weight: 550;
-          text-align: center;
-          line-height: 18px;
-      }
-  }
-
-  /* PARTNERS */
-  .coe-partner__item {
-      width: 220px;
-      height: 75px;
-      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 50%);
-      border: 1px solid transparent;
-      border-radius: 4px;
-      margin: 0 10px;
-      display: flex;
-      flex-direction: column;
-      padding: 12px 17px;
-      position: relative;
-      row-gap: 14px;
-
-      &::before {
-          content: "";
-          position: absolute;
-          top: -1px; /* BORDER PX*/
-          left: -1px; /* BORDER PX*/
-          width: 100%;
-          height: 100%;
-
-          background: linear-gradient(180deg, #7f7f7f, rgba(0, 0, 0, 0)) border-box;
-          border: inherit;
-          border-radius: inherit; 
-          mask: 
-              linear-gradient(white, white) padding-box,
-              linear-gradient(white, white);
-          mask-composite: exclude;
-      }
-
-
-      > p  {
-          font-size: 8px;
-          height: fit-content;line-height: 12px;
-      }
-      
-      > img {
-          height: 30px;
-          align-self: start;
-      }
-  }
-
-  @keyframes slide {
-      from {
-          transform: translateX(0);
-      }
-      to {
-          transform: translateX(-100%);
-      }
-  }
-
-  .coe-infinite-scroll__container {
-      display: flex;
-      overflow: hidden;
-      white-space: nowrap;
-      position: relative;
-      align-self: normal;
-      pointer-events: none;
-      margin-top: 10px;
-      margin-bottom: 45px;
-      width: min(100%, 1100px);
-      align-self: center;
-  }
-
-  .coe-infinite-scroll__container:before,
-  .coe-infinite-scroll__container:after {
-      position: absolute;
-      top: 0;
-      width: 250px;
-      height: 100%;
-      content: "";
-      z-index: 2;
-  }
-
-  .coe-infinite-scroll__container:before {
-      left: 0;
-      background: linear-gradient(to left, rgba(255, 255, 255, 0), var(--background-color));
-  }
-
-  .coe-infinite-scroll__container:after {
-      right: 0;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--background-color));
-  }
-
-  .coe-infinite-scroll__container:hover .coe-infinite-scroll__slider {
-      animation-play-state: paused;
-  }
-
-  .coe-infinite-scroll__slider {
-      display: inline-flex;
-      margin: 0px;
-      animation: 30s slide infinite linear;
-  }
-
-  /* PEOPLE */
-  .coe-people__wrapper {
-      scroll-snap-type: x mandatory;
-      width: min(930px, 100%);
-  }
-
-  .coe-people__scroll-container {
-      width: 100%;
-      overflow-x: scroll;
-      position: relative;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-          display: none;
-      }
-  }
-
-  .coe-people__list {
-      pointer-events: all;
-      display: grid;
-      grid-auto-flow: column;
-      width: fit-content;
-      gap: 20px;
-      margin: 0px 500px; /* FIX */
-      z-index: 9;
-  }
-
-  .coe-people__item {
-      z-index: 10;
-      width: 295px;
-      height: 350px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      scroll-snap-align: center;
-      border: 2px solid transparent;
-      border-radius: 1em;
-      position: relative;
-      padding: 1em;
-
-      &::before {
-          content: "";
-          position: absolute;
-          top: -2px; /* BORDER PX*/
-          left: -2px; /* BORDER PX*/
-          width: 100%;
-          height: 100%;
-
-          background: linear-gradient(180deg, #7f7f7f, rgba(0, 0, 0, 0)) border-box;
-          border: inherit;
-          border-radius: inherit; 
-          mask: 
-              linear-gradient(white, white) padding-box,
-              linear-gradient(white, white);
-          mask-composite: exclude;
-
-          pointer-events: none;
-      }
-
-      > img {
-          width: 160px;
-          height: 160px;
-          border-radius: 50%;
-      }
-
-      > div {
-          display: flex;
-          gap: 1ch;
-
-          > p {
-              line-height: normal;
-          }
-      }
-
-      > p {
-          text-align: center;
-          font-weight: 200;
-          font-size: 16;
-      }
-
-      > h4 {
-          font-size: 20px;
-      }
-  }
-
-  .coe-people__tab-list-container {
-      width: min(40%, 300px)
-  }
-
-  .coe-people__tab-list {
-      display: flex;
-  }
-
-  .coe-people__tab {
-      display: flex;
-      flex-grow: 1;
-      justify-content: center;
-  }
-
-  .coe-people__tab > a {
-      background-color: #e0e0e0;
-      height: 8px;
-      width: 8px;
-      border-radius: 4px;
-  }
-
-  .coe-people__tab--active > a  {
-      width: 100%;
-  }
+    /* DEBUG */
+    /* html {
+        scroll-behavior: smooth;
+    } */
+
+    * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    }
+
+    .coe-main * {
+        --background-color: #0C233C;
+
+        --text-color--primary: #989898;
+        --text-color--secondary: #E5E5E5;
+
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none; 
+        text-transform: none;
+        font-size: 18px;
+        font-family: 'Arial', sans-serif;
+        font-weight: normal;
+        color: var(--text-color--primary);
+        
+        /* Debug */
+        /* border: 1px solid red; */
+    }
+
+    .coe-main {
+        margin-top: 40px; /* STICKY HEADER HEIGHT*/
+        width: 100%;
+    }
+
+    .coe-main h1 {
+        font-size: 34px;
+        text-align: center;
+        line-height: 34px;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        color: var(--text-color--secondary);
+    }
+
+    .coe-main h2 {
+        padding: 6px 12px;
+        font-size: 14px;
+        background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 100%);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, .11);
+    }
+
+    .coe-main h3 {
+        font-size: 30;
+        text-align: center;
+    }
+
+    .coe-main p {
+        line-height: 26px;
+    }
+
+    .coe-main section:not(.coe-hero) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--background-color);
+        padding: 45px 0px 0px 0px;
+        gap: 35px;
+
+        &:not(.coe-challenges):not(.coe-partners) {
+            background-image: radial-gradient(circle at center top, #113054, #0C223C 50%);
+            padding-bottom: 45px;
+        }
+    }
+
+    .coe-sticky-header {
+        background-color: var(--background-color);        
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+        height: 48px;
+
+        > img {
+            padding: 10px;
+            height: 100%;
+        }
+    }
+
+    .coe-gradient-text {
+        background-image: linear-gradient(to right, #666, #fff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    @media screen and (max-width: 639px) {
+        .coe-grid-filler {
+            display: none;
+        }
+
+        .coe-challenges__list {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+    }
+    @media screen and (min-width: 640px) {
+        .coe-grid-filler {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .coe-challenges__list {
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+    }
+
+    /* HERO */
+    .coe-hero {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+    }
+
+    .coe-media-background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+    }
+    
+    .coe-hero__content {
+        z-index: 3;
+        width: 90%;
+        margin-top: 20px;
+    }
+
+    .coe-cases > h3, .coe-cases > p {
+        text-align: center;
+        padding: 0px 24px;
+        width: min(100%, 600px)
+    }
+
+    .coe-offerings > h3, .coe-offerings > p {
+        text-align: center;
+        padding: 0px 24px;
+        width: min(100%, 600px)
+    }
+
+    /* CHALLENGES */
+    .coe-challenges > h3, .coe-challenges > p {
+        text-align: center;
+        padding: 0px 24px;
+        width: min(100%, 600px)
+    }
+
+    .coe-challenges__list {
+        margin-top: 10px;
+        display: grid;
+        width: min(100%, 1100px);
+    }
+
+    .coe-challenges__item {
+        display: flex;
+        flex-direction: column;
+        padding: 45px 24px;
+        gap: 35px;
+
+        > h4 {
+            font-size: 30px;
+            width: 90%;
+            color: var(--text-color--secondary);
+        }
+    }
+
+    .coe-challenges__item:nth-child(odd) {
+        background-image: radial-gradient(farthest-corner at 40px 40px, #113054 0%, #0C223C 100%);
+
+        & > img {
+            margin: 10px 0px;
+            height: 170px;
+            object-fit: contain;
+        }
+    }
+
+    .coe-challenges__item:nth-child(even) {
+        position: relative;
+        padding-bottom: 260px;
+
+        z-index: 1;
+
+        & > img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            z-index: -1;
+            /* filter: brightness(30%); */
+        }
+    }
+
+    /* CASES */
+    .coe-cases__wrapper {
+        margin-top: 10px;
+        scroll-snap-type: x mandatory;
+        width: min(930px, 100%);
+    }
+
+    .coe-cases__scroll-container {
+        width: 100%;
+        overflow-x: scroll;
+        position: relative;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .coe-cases__list {
+        display: grid;
+        grid-auto-flow: column;
+        width: fit-content;
+        gap: 20px;
+        margin: 0px 500px; /* FIX */
+    }
+    
+
+    .coe-cases__item {
+        width: 295px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        scroll-snap-align: center;
+        border: 2px solid transparent;
+        border-radius: 1em;
+        position: relative;
+        padding: 1em;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -2px; /* BORDER PX*/
+            left: -2px; /* BORDER PX*/
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(180deg, #7f7f7f, rgba(0, 0, 0, 0)) border-box;
+            border: inherit;
+            border-radius: inherit; 
+            mask: 
+                linear-gradient(white, white) padding-box,
+                linear-gradient(white, white);
+            mask-composite: exclude;
+        }
+
+        > h4 {
+            font-size: 22px;
+            width: 66%;
+        }
+
+        > p {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 18px;
+        }
+
+        > a {
+            width: 26px;
+            height: 26px;
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+        }
+
+        > img {
+            position: absolute;
+            translate: 0 75%;
+            width: 70%;
+            object-fit: cover;
+        }
+    }
+
+    .coe-cases__tab-list-container {
+        width: min(40%, 300px)
+    }
+
+    .coe-cases__tab-list {
+        display: flex;
+    }
+
+    .coe-cases__tab {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    .coe-cases__tab > a {
+        background-color: #e0e0e0;
+        height: 8px;
+        width: 8px;
+        border-radius: 4px;
+    }
+
+    .coe-cases__tab--active > a  {
+        width: 100%;
+    }
+
+    /* OFFERINGS */
+    .coe-offerings__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        width: min(100%, 700px);
+        padding: 25px 24px;
+        row-gap: 40px;
+        justify-items: stretch;
+
+        /* > :last-child {
+            grid-column: span 2;
+        } */
+    }
+
+    .coe-offerings__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        & > img {
+            width: 40px;
+            height: 40px;
+        }
+
+        > h4 {
+            font-size: 14;
+            font-weight: 550;
+            text-align: center;
+            line-height: 18px;
+        }
+    }
+
+    /* PARTNERS */
+    .coe-partner__item {
+        width: 220px;
+        height: 75px;
+        background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 50%);
+        border: 1px solid transparent;
+        border-radius: 4px;
+        margin: 0 10px;
+        display: flex;
+        flex-direction: column;
+        padding: 12px 17px;
+        position: relative;
+        row-gap: 14px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -1px; /* BORDER PX*/
+            left: -1px; /* BORDER PX*/
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(180deg, #7f7f7f, rgba(0, 0, 0, 0)) border-box;
+            border: inherit;
+            border-radius: inherit; 
+            mask: 
+                linear-gradient(white, white) padding-box,
+                linear-gradient(white, white);
+            mask-composite: exclude;
+        }
+
+
+        > p  {
+            font-size: 8px;
+            height: fit-content;line-height: 12px;
+        }
+        
+        > img {
+            height: 30px;
+            align-self: start;
+        }
+    }
+
+    @keyframes slide {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-100%);
+        }
+    }
+
+    .coe-infinite-scroll__container {
+        display: flex;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        align-self: normal;
+        pointer-events: none;
+        margin-top: 10px;
+        margin-bottom: 45px;
+        width: min(100%, 1100px);
+        align-self: center;
+    }
+
+    .coe-infinite-scroll__container:before,
+    .coe-infinite-scroll__container:after {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        height: 100%;
+        content: "";
+        z-index: 2;
+    }
+
+    .coe-infinite-scroll__container:before {
+        left: 0;
+        background: linear-gradient(to left, rgba(255, 255, 255, 0), var(--background-color));
+    }
+
+    .coe-infinite-scroll__container:after {
+        right: 0;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--background-color));
+    }
+
+    .coe-infinite-scroll__container:hover .coe-infinite-scroll__slider {
+        animation-play-state: paused;
+    }
+
+    .coe-infinite-scroll__slider {
+        display: inline-flex;
+        margin: 0px;
+        animation: 30s slide infinite linear;
+    }
+
+    /* PEOPLE */
+    .coe-people__wrapper {
+        scroll-snap-type: x mandatory;
+        width: min(930px, 100%);
+    }
+
+    .coe-people__scroll-container {
+        width: 100%;
+        overflow-x: scroll;
+        position: relative;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .coe-people__list {
+        pointer-events: all;
+        display: grid;
+        grid-auto-flow: column;
+        width: fit-content;
+        gap: 20px;
+        margin: 0px 500px; /* FIX */
+        z-index: 9;
+    }
+
+    .coe-people__item {
+        z-index: 10;
+        width: 295px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        scroll-snap-align: center;
+        border: 2px solid transparent;
+        border-radius: 1em;
+        position: relative;
+        padding: 1em;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -2px; /* BORDER PX*/
+            left: -2px; /* BORDER PX*/
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(180deg, #7f7f7f, rgba(0, 0, 0, 0)) border-box;
+            border: inherit;
+            border-radius: inherit; 
+            mask: 
+                linear-gradient(white, white) padding-box,
+                linear-gradient(white, white);
+            mask-composite: exclude;
+
+            pointer-events: none;
+        }
+
+        > img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+        }
+
+        > div {
+            display: flex;
+            gap: 1ch;
+
+            > p {
+                line-height: normal;
+            }
+        }
+
+        > p {
+            text-align: center;
+            font-weight: 200;
+            font-size: 16;
+        }
+
+        > h4 {
+            font-size: 20px;
+        }
+    }
+
+    .coe-people__tab-list-container {
+        width: min(40%, 300px)
+    }
+
+    .coe-people__tab-list {
+        display: flex;
+    }
+
+    .coe-people__tab {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    .coe-people__tab > a {
+        background-color: #e0e0e0;
+        height: 8px;
+        width: 8px;
+        border-radius: 4px;
+    }
+
+    .coe-people__tab--active > a  {
+        width: 100%;
+    }
 </style>
 
 <!-- DEBUG -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Max 640</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max 640</title>
 </head>
 </html>
 
 <main class="coe-main">
-  <div class="coe-sticky-header">
-      <img src="https://assets.kpmg.com/is/image/kpmg/kpmg-logo-2" alt="KPMG logotype">
-  </div>
-  <section class="coe-hero">
-      <video-js 
-          autoplay muted loop playsinline
-          class="coe-media-background"
-          data-account="1752604059001"
-          data-player="ByZN9ymFZ"
-          data-embed="default"
-          data-video-id="5045678907001"
-          class="vjs-fluid"
-          style="object-fit: cover;">
-      </video-js>
-      <div class="coe-hero__content">
-          <h1 class="coe-hero__headline">Commercial Vehicles<br/>Center of Exellence</h1>
-          <!-- <div class="coe-hero__cta-container">
-              <a href="#coe-challenges" class="cta-btn">Key Industry Challenges</a>
-              <a href="#coe-value" class="cta-btn">Value Proposition</a>
-          </div> -->
-      </div>
-  </section>
-  <section class="coe-challenges" id="coe-challenges-id">
-      <h2 class="coe-challenges__headline">Industry Challenges</h2>
-      <h3 class="coe-gradient-text">A sustainable automotive future.</h3>
-      <p class="coe-challenges__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ad pariatur ea quod labore consequuntur, sequi eius dolorum, mollitia reiciendis error consequatur!</p>
-      <ul class="coe-challenges__list">
-          <li class="coe-challenges__item">
-              <h4 class="coe-challenges__item-headline">Generating sustainable growth.</h4>
-              <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/bars.svg" alt="">
-              <p class="coe-challenges__item-body">OEMs face limited growth, with most reporting below-average EBIT and lower-than-expected valuations. Shareholders find more attractive options in higher-valued sectors, making sustained profitability a challenge.</p>
-          </li>
-          <li class="coe-challenges__item">
-              <h4 class="coe-challenges__item-headline">Enhancing product excellence through customer-centric solutions.</h4>
-              <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/bars.svg" alt="">
-              <p class="coe-challenges__item-body">OEMs struggle to integrate customer-centric solutions, resulting in lower performance compared to tech companies, which achieve higher profitability and valuation through business innovation and customer focus</p>
-          </li>
-          <li class="coe-challenges__item">
-              <h4 class="coe-challenges__item-headline">Commercializing new powertrains.</h4>
-              <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/bars.svg" alt="">
-              <p class="coe-challenges__item-body">Truck OEMs risk overinvesting in electrification and hydrogen powertrains due to lagging demand. Ambitious 2030 sales targets exceed forecasts, while EU regulations widen the investment-demand gap, requiring strategic decision-making and customer focus.</p>
-          </li>
-          <li class="coe-challenges__item">
-              <h4 class="coe-challenges__item-headline">Building resilience against cyber threats and other risks.</h4>
-              <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/bars.svg" alt="">
-              <p class="coe-challenges__item-body">Cyber insecurity poses a major global risk for international companies, amplified by generative AI. The transportation sector's digital reliance increases vulnerability, requiring OEMs to manage these risks alongside financial and geopolitical challenges.</p>
-          </li>
-          <li class="coe-challenges__item">
-              <h4 class="coe-challenges__item-headline">Driving impact through new technology.</h4>
-              <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/bars.svg" alt="">
-              <p class="coe-challenges__item-body">New technology can enhance customer engagement, operational efficiency, and workforce empowerment, but traditional industries struggle to leverage these solutions for business growth.</p>
-          </li>
-          <img class="coe-grid-filler" src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/bars.svg" alt="">
-      </ul>
-  </section>
-  <section class="coe-cases">
-      <h2>Cases</h2>
-      <h3 class="coe-gradient-text">Uncover KPMG's reports and trends</h3>
-      <div class="coe-cases__wrapper">
-          <div class="coe-cases__scroll-container">
-              <ul class="coe-cases__list">
-                  <li class="coe-cases__item">
-                      <h4>Charging ahead: Adressing the EV cost hurdle.</h4>
-                      <a href="#">
-                          <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/icons/download.svg" alt="" style="width: 100%">
-                      </a>
-                      <p class="coe-gradient-text">24th Annual Global Automotive Executive Survey.</p>
-                  </li>
-                  <li class="coe-cases__item">
-                      <h4>Evolution of transport fuels.</h4>
-                      <a href="#">
-                          <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/icons/download.svg" alt="" style="width: 100%">
-                      </a>
-                      <p class="coe-gradient-text">The role of alternatives fules on the path to sustainability.</p>
-                  </li>
-                  <li class="coe-cases__item">
-                      <h4>Cybersecure vehicles.</h4>
-                      <a href="#">
-                          <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/icons/download.svg" alt="" style="width: 100%">
-                      </a>
-                      <p class="coe-gradient-text">More connected vehicle demand stronger cybersecurity.</p>
-                  </li>
-                  <li class="coe-cases__item">
-                      <h4>Sustainable batteries.</h4>
-                      <a href="#">
-                          <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/icons/download.svg" alt="" style="width: 100%">
-                      </a>
-                      <p class="coe-gradient-text">EV battery growth depends on circular economy shift.</p>
-                  </li>
-              </ul>
-          </div>
-      </div>
-      <div class="coe-cases__tab-list-container">
-          <ul class="coe-cases__tab-list">
-              <li class="coe-cases__tab coe-cases__tab--active"><a href=""></a></li>
-              <li class="coe-cases__tab"><a href=""></a></li>
-              <li class="coe-cases__tab"><a href=""></a></li>
-              <li class="coe-cases__tab"><a href=""></a></li>
-          </ul>
-      </div>
-  </section>
-  <section class="coe-offerings">
-      <h2>Offerings</h2>
-      <h3 class="coe-gradient-text">What we can help with</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti neque, tempore ullam facilis illum doloremque velit rem sapiente.</p>
-      <ul class="coe-offerings__list">
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/strategy.png" alt="">
-              <h4 class="coe-gradient-text">Corporate Strategy</h4>
-          </li>
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/sustainability.png" alt="">
-              <h4 class="coe-gradient-text">Sustainability</h4>
-          </li>
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/customer.png" alt="">
-              <h4 class="coe-gradient-text">Customer Centricity</h4>
-          </li>
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/deals.png" alt="">
-              <h4 class="coe-gradient-text">Deal Advisory</h4>
-          </li>
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/tech.png" alt="">
-              <h4 class="coe-gradient-text">Technology, AI & Analytics</h4>
-          </li>
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/restructuring.png" alt="">
-              <h4 class="coe-gradient-text">Restructuring & Turnaround</h4>
-          </li>
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/tax.png" alt="">
-              <h4 class="coe-gradient-text">Tax</h4>
-          </li>
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/finance.png" alt="">
-              <h4 class="coe-gradient-text">Finance</h4>
-          </li>
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/transformation.png" alt="">
-              <h4 class="coe-gradient-text">Transformation & Supply Chain Optimization</h4>
-          </li>
-          <li class="coe-offerings__item">
-              <img src="https://stg-author.kpmg.com/content/dam/kpmg/se/other/coe/icons/reporting.png" alt="">
-              <h4 class="coe-gradient-text">Regulatory Advisory & Reporting</h4>
-          </li>
-      </ul>
-  </section>
-  <section class="coe-partners">
-      <h2 class="coe-partners__headline">Our Partners</h2>
-      <div class="coe-infinite-scroll__container">
-          <div class="coe-infinite-scroll__slider">
-              <div class="coe-partner__item">
-                  <p>Microsoft</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/ms.svg" alt="">
-              </div>
-              <div class="coe-partner__item">
-                  <p>ServiceNow</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/servicenow.svg" alt="">
-              </div>
-              <div class="coe-partner__item">
-                  <p>Statistical Software</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/sas.svg" alt="">
-              </div>
-              <div class="coe-partner__item">
-                  <p>Ericsson</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/ericsson.svg" alt="">
-              </div>
-              <div class="coe-partner__item">
-                  <p>Coupa</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/coupa.svg" alt="">
-              </div>
-          </div>
-          <!-- Copies -->
-          <div class="coe-infinite-scroll__slider">
-              <div class="coe-partner__item">
-                  <p>Microsoft</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/ms.svg" alt="">
-              </div>
-              <div class="coe-partner__item">
-                  <p>ServiceNow</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/servicenow.svg" alt="">
-              </div>
-              <div class="coe-partner__item">
-                  <p>Statistical Software</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/sas.svg" alt="">
-              </div>
-              <div class="coe-partner__item">
-                  <p>Ericsson</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/ericsson.svg" alt="">
-              </div>
-              <div class="coe-partner__item">
-                  <p>Coupa</p>
-                  <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/coupa.svg" alt="">
-              </div>
-          </div>
-      </div>
-  </section>
-  <section class="coe-people">
-      <h2>Our Team</h2>
-      <h3 class="coe-gradient-text">Let our experts help you.</h3>
-      <div class="coe-people__wrapper">
-          <div class="coe-people__scroll-container">
-              <ul class="coe-people__list">
-                  <li class="coe-people__item">
-                      <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
-                      <h4>Daniel Szirányi</h4>
-                      <p>Partner, Automotive & Global Strategy Group</p>
-                      <p>KPMG in Sweden</p>
-                      <div>
-                          <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
-                          <p> | </p>
-                          <a href="mailto:example@example.com">Email</a>
-                          <p> | </p>
-                          <a href="tel:+46736990547">Phone</a>
-                      </div>
-                  </li>
-                  <li class="coe-people__item">
-                      <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
-                      <h4>Daniel Szirányi</h4>
-                      <p>Partner, Automotive & Global Strategy Group</p>
-                      <p>KPMG in Sweden</p>
-                      <div>
-                          <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
-                          <p> | </p>
-                          <a href="mailto:example@example.com">Email</a>
-                          <p> | </p>
-                          <a href="tel:+46736990547">Phone</a>
-                      </div>
-                  </li>
-                  <li class="coe-people__item">
-                      <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
-                      <h4>Daniel Szirányi</h4>
-                      <p>Partner, Automotive & Global Strategy Group</p>
-                      <p>KPMG in Sweden</p>
-                      <div>
-                          <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
-                          <p> | </p>
-                          <a href="mailto:example@example.com">Email</a>
-                          <p> | </p>
-                          <a href="tel:+46736990547">Phone</a>
-                      </div>
-                  </li>
-                  <li class="coe-people__item">
-                      <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
-                      <h4>Daniel Szirányi</h4>
-                      <p>Partner, Automotive & Global Strategy Group</p>
-                      <p>KPMG in Sweden</p>
-                      <div>
-                          <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
-                          <p> | </p>
-                          <a href="mailto:example@example.com">Email</a>
-                          <p> | </p>
-                          <a href="tel:+46736990547">Phone</a>
-                      </div>
-                  </li>
-                  <li class="coe-people__item">
-                      <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
-                      <h4>Daniel Szirányi</h4>
-                      <p>Partner, Automotive & Global Strategy Group</p>
-                      <p>KPMG in Sweden</p>
-                      <div>
-                          <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
-                          <p> | </p>
-                          <a href="mailto:example@example.com">Email</a>
-                          <p> | </p>
-                          <a href="tel:+46736990547">Phone</a>
-                      </div>
-                  </li>
-              </ul>
-          </div>
-      </div>
-      <div class="coe-people__tab-list-container">
-          <ul class="coe-people__tab-list">
-              <li class="coe-people__tab coe-people__tab--active"><a href=""></a></li>
-              <li class="coe-people__tab"><a href=""></a></li>
-              <li class="coe-people__tab"><a href=""></a></li>
-              <li class="coe-people__tab"><a href=""></a></li>
-              <li class="coe-people__tab"><a href=""></a></li>
-          </ul>
-      </div>
-  </section>
+    <div class="coe-sticky-header">
+        <img src="/images/logo.svg" alt="KPMG logotype">
+    </div>
+    <section class="coe-hero">
+        <video-js 
+            autoplay muted loop playsinline
+            class="coe-media-background"
+            data-account="1752604059001"
+            data-player="ByZN9ymFZ"
+            data-embed="default"
+            data-video-id="5045678907001"
+            class="vjs-fluid"
+            style="object-fit: cover;">
+        </video-js>
+        <div class="coe-hero__content">
+            <h1 class="coe-hero__headline">Commercial Vehicles<br/>Center of Exellence</h1>
+            <!-- <div class="coe-hero__cta-container">
+                <a href="#coe-challenges" class="cta-btn">Key Industry Challenges</a>
+                <a href="#coe-value" class="cta-btn">Value Proposition</a>
+            </div> -->
+        </div>
+    </section>
+    <section class="coe-challenges" id="coe-challenges-id">
+        <h2 class="coe-challenges__headline">Industry Challenges</h2>
+        <h3 class="coe-gradient-text">A sustainable automotive future.</h3>
+        <p class="coe-challenges__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ad pariatur ea quod labore consequuntur, sequi eius dolorum, mollitia reiciendis error consequatur!</p>
+        <ul class="coe-challenges__list">
+            <li class="coe-challenges__item">
+                <h4 class="coe-challenges__item-headline">Generating sustainable growth.</h4>
+                <img src="/images/bars.svg" alt="">
+                <p class="coe-challenges__item-body">OEMs face limited growth, with most reporting below-average EBIT and lower-than-expected valuations. Shareholders find more attractive options in higher-valued sectors, making sustained profitability a challenge.</p>
+            </li>
+            <li class="coe-challenges__item">
+                <h4 class="coe-challenges__item-headline">Enhancing product excellence through customer-centric solutions.</h4>
+                <img src="/images/truck.png" alt="">
+                <p class="coe-challenges__item-body">OEMs struggle to integrate customer-centric solutions, resulting in lower performance compared to tech companies, which achieve higher profitability and valuation through business innovation and customer focus</p>
+            </li>
+            <li class="coe-challenges__item">
+                <h4 class="coe-challenges__item-headline">Commercializing new powertrains.</h4>
+                <img src="/images/engine.png" alt="">
+                <p class="coe-challenges__item-body">Truck OEMs risk overinvesting in electrification and hydrogen powertrains due to lagging demand. Ambitious 2030 sales targets exceed forecasts, while EU regulations widen the investment-demand gap, requiring strategic decision-making and customer focus.</p>
+            </li>
+            <li class="coe-challenges__item">
+                <h4 class="coe-challenges__item-headline">Building resilience against cyber threats and other risks.</h4>
+                <img src="/images/laptop.png" alt="">
+                <p class="coe-challenges__item-body">Cyber insecurity poses a major global risk for international companies, amplified by generative AI. The transportation sector's digital reliance increases vulnerability, requiring OEMs to manage these risks alongside financial and geopolitical challenges.</p>
+            </li>
+            <li class="coe-challenges__item">
+                <h4 class="coe-challenges__item-headline">Driving impact through new technology.</h4>
+                <img src="/images/chip.png" alt="">
+                <p class="coe-challenges__item-body">New technology can enhance customer engagement, operational efficiency, and workforce empowerment, but traditional industries struggle to leverage these solutions for business growth.</p>
+            </li>
+            <img class="coe-grid-filler" src="/images/filler.png" alt="">
+        </ul>
+    </section>
+    <section class="coe-cases">
+        <h2>Cases</h2>
+        <h3 class="coe-gradient-text">Uncover KPMG's reports and trends</h3>
+        <div class="coe-cases__wrapper">
+            <div class="coe-cases__scroll-container">
+                <ul class="coe-cases__list">
+                    <li class="coe-cases__item">
+                        <h4>Charging ahead: Adressing the EV cost hurdle.</h4>
+                        <img src="images/cases/charging.png" alt="">
+                        <a href="/pdfs/charging.pdf">
+                            <img src="/images/icons/svg/download.svg" alt="" style="width: 100%">
+                        </a>
+                        <p class="coe-gradient-text">24th Annual Global Automotive Executive Survey.</p>
+                    </li>
+                    <li class="coe-cases__item">
+                        <h4>The future of IT.</h4>
+                        <img src="images/cases/it.png" alt="">
+                        <a href="/pdfs/it.pdf">
+                            <img src="/images/icons/svg/download.svg" alt="" style="width: 100%">
+                        </a>
+                        <p class="coe-gradient-text">Strategies to advance the IT function in a cloud and AI-enabled era.</p>
+                    </li>
+                    <li class="coe-cases__item">
+                        <h4>Cybersecure vehicles.</h4>
+                        <img src="images/cases/cybervehicles.PNG" alt="">
+                        <a href="/pdfs/cybervehicles.pdf">
+                            <img src="/images/icons/svg/download.svg" alt="" style="width: 100%">
+                        </a>
+                        <p class="coe-gradient-text">More connected vehicle demand stronger cybersecurity.</p>
+                    </li>
+                    <li class="coe-cases__item">
+                        <h4>Sustainable batteries.</h4>
+                        <img src="images/cases/cyberconsiderations.png" alt="">
+                        <a href="/pdfs/KPMG-GenAI-and-SDLC.pdf">
+                            <img src="/images/icons/svg/download.svg" alt="" style="width: 100%">
+                        </a>
+                        <p class="coe-gradient-text">EV battery growth depends on circular economy shift.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="coe-cases__tab-list-container">
+            <ul class="coe-cases__tab-list">
+                <li class="coe-cases__tab coe-cases__tab--active"><a href=""></a></li>
+                <li class="coe-cases__tab"><a href=""></a></li>
+                <li class="coe-cases__tab"><a href=""></a></li>
+                <li class="coe-cases__tab"><a href=""></a></li>
+            </ul>
+        </div>
+    </section>
+    <section class="coe-offerings">
+        <h2>Offerings</h2>
+        <h3 class="coe-gradient-text">What we can help with</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti neque, tempore ullam facilis illum doloremque velit rem sapiente.</p>
+        <ul class="coe-offerings__list">
+            <li class="coe-offerings__item">
+                <img src="/images/icons/strategy.png" alt="">
+                <h4 class="coe-gradient-text">Corporate Strategy</h4>
+            </li>
+            <li class="coe-offerings__item">
+                <img src="/images/icons/sustainability.png" alt="">
+                <h4 class="coe-gradient-text">Sustainability</h4>
+            </li>
+            <li class="coe-offerings__item">
+                <img src="/images/icons/customer.png" alt="">
+                <h4 class="coe-gradient-text">Customer Centricity</h4>
+            </li>
+            <li class="coe-offerings__item">
+                <img src="/images/icons/deals.png" alt="">
+                <h4 class="coe-gradient-text">Deal Advisory</h4>
+            </li>
+            <li class="coe-offerings__item">
+                <img src="/images/icons/tech.png" alt="">
+                <h4 class="coe-gradient-text">Technology, AI & Analytics</h4>
+            </li>
+            <li class="coe-offerings__item">
+                <img src="/images/icons/restructuring.png" alt="">
+                <h4 class="coe-gradient-text">Restructuring & Turnaround</h4>
+            </li>
+            <li class="coe-offerings__item">
+                <img src="/images/icons/tax.png" alt="">
+                <h4 class="coe-gradient-text">Tax</h4>
+            </li>
+            <li class="coe-offerings__item">
+                <img src="/images/icons/finance.png" alt="">
+                <h4 class="coe-gradient-text">Finance</h4>
+            </li>
+            <li class="coe-offerings__item">
+                <img src="/images/icons/transformation.png" alt="">
+                <h4 class="coe-gradient-text">Transformation & Supply Chain Optimization</h4>
+            </li>
+            <li class="coe-offerings__item">
+                <img src="/images/icons/reporting.png" alt="">
+                <h4 class="coe-gradient-text">Regulatory Advisory & Reporting</h4>
+            </li>
+        </ul>
+    </section>
+    <section class="coe-partners">
+        <h2 class="coe-partners__headline">Our Partners</h2>
+        <div class="coe-infinite-scroll__container">
+            <div class="coe-infinite-scroll__slider">
+                <div class="coe-partner__item">
+                    <p>Microsoft</p>
+                    <img src="/images/partners/ms.svg" alt="">
+                </div>
+                <div class="coe-partner__item">
+                    <p>ServiceNow</p>
+                    <img src="/images/partners/servicenow.svg" alt="">
+                </div>
+                <div class="coe-partner__item">
+                    <p>Statistical Software</p>
+                    <img src="/images/partners/sas.svg" alt="">
+                </div>
+                <div class="coe-partner__item">
+                    <p>Ericsson</p>
+                    <img src="/images/partners/ericsson.svg" alt="">
+                </div>
+                <div class="coe-partner__item">
+                    <p>Coupa</p>
+                    <img src="/images/partners/coupa.svg" alt="">
+                </div>
+            </div>
+            <!-- Copies -->
+            <div class="coe-infinite-scroll__slider">
+                <div class="coe-partner__item">
+                    <p>Microsoft</p>
+                    <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/ms.svg" alt="">
+                </div>
+                <div class="coe-partner__item">
+                    <p>ServiceNow</p>
+                    <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/servicenow.svg" alt="">
+                </div>
+                <div class="coe-partner__item">
+                    <p>Statistical Software</p>
+                    <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/sas.svg" alt="">
+                </div>
+                <div class="coe-partner__item">
+                    <p>Ericsson</p>
+                    <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/ericsson.svg" alt="">
+                </div>
+                <div class="coe-partner__item">
+                    <p>Coupa</p>
+                    <img src="https://stg-author.kpmg.com/assets.html/content/dam/kpmg/se/other/coe/images/partners/coupa.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="coe-people">
+        <h2>Our Team</h2>
+        <h3 class="coe-gradient-text">Let our experts help you.</h3>
+        <div class="coe-people__wrapper">
+            <div class="coe-people__scroll-container">
+                <ul class="coe-people__list">
+                    <li class="coe-people__item">
+                        <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
+                        <h4>Daniel Szirányi</h4>
+                        <p>Partner, Automotive & Global Strategy Group</p>
+                        <p>KPMG in Sweden</p>
+                        <div>
+                            <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
+                            <p> | </p>
+                            <a href="mailto:example@example.com">Email</a>
+                            <p> | </p>
+                            <a href="tel:+46736990547">Phone</a>
+                        </div>
+                    </li>
+                    <li class="coe-people__item">
+                        <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
+                        <h4>Daniel Szirányi</h4>
+                        <p>Partner, Automotive & Global Strategy Group</p>
+                        <p>KPMG in Sweden</p>
+                        <div>
+                            <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
+                            <p> | </p>
+                            <a href="mailto:example@example.com">Email</a>
+                            <p> | </p>
+                            <a href="tel:+46736990547">Phone</a>
+                        </div>
+                    </li>
+                    <li class="coe-people__item">
+                        <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
+                        <h4>Daniel Szirányi</h4>
+                        <p>Partner, Automotive & Global Strategy Group</p>
+                        <p>KPMG in Sweden</p>
+                        <div>
+                            <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
+                            <p> | </p>
+                            <a href="mailto:example@example.com">Email</a>
+                            <p> | </p>
+                            <a href="tel:+46736990547">Phone</a>
+                        </div>
+                    </li>
+                    <li class="coe-people__item">
+                        <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
+                        <h4>Daniel Szirányi</h4>
+                        <p>Partner, Automotive & Global Strategy Group</p>
+                        <p>KPMG in Sweden</p>
+                        <div>
+                            <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
+                            <p> | </p>
+                            <a href="mailto:example@example.com">Email</a>
+                            <p> | </p>
+                            <a href="tel:+46736990547">Phone</a>
+                        </div>
+                    </li>
+                    <li class="coe-people__item">
+                        <img src="https://assets.kpmg.com/is/image/kpmg/se-people-daniel-szir%C3%A1nyi:cq5dam.web.424.424" alt="">
+                        <h4>Daniel Szirányi</h4>
+                        <p>Partner, Automotive & Global Strategy Group</p>
+                        <p>KPMG in Sweden</p>
+                        <div>
+                            <a href="https://kpmg.com/se/sv/home/contacts/s/daniel-sziranyi.html">Profile</a>
+                            <p> | </p>
+                            <a href="mailto:example@example.com">Email</a>
+                            <p> | </p>
+                            <a href="tel:+46736990547">Phone</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="coe-people__tab-list-container">
+            <ul class="coe-people__tab-list">
+                <li class="coe-people__tab coe-people__tab--active"><a href=""></a></li>
+                <li class="coe-people__tab"><a href=""></a></li>
+                <li class="coe-people__tab"><a href=""></a></li>
+                <li class="coe-people__tab"><a href=""></a></li>
+                <li class="coe-people__tab"><a href=""></a></li>
+            </ul>
+        </div>
+    </section>
 </main>
 
 <!-- BRICGHTCOVE VIDEO -->
@@ -848,159 +860,159 @@
 
 <!-- TEMPLATE HACKS -->
 <!-- <script>
-  // REMOVAL OF TEMPLATE HEADER, NAV, MARGIN, PADDING
-  const templateHeader = document.querySelector(".global-navigation");
-  const pageContainer = document.getElementById("page-content");
-  const htmlContainer = document.querySelector(".module-htmlcontainer");
-  
-  templateHeader.style.display = "none";
-  pageContainer.style.margin = "0px";
-  pageContainer.style.padding = "0px";
-  htmlContainer.style.setProperty('padding', '0px', 'important');
-  
-  // FOOTER REMOVAL NOT WORKING ATM
-  // const templateFooter = document.querySelector(".global-footer");
-  // templateFooter.style.visibility = "hidden";
-  
-  // IF NAVBAR PRESENT
-  // const mobileNavbar = document.querySelector(".mobile-navbar-component").querySelector(".navbar");        
-  // const getNavbarHeight = () => mobileNavbar.offsetHeight;
-  // console.log(getNavbarHeight());
-  
-  // IF TABLET
-  pageContainer.style.width = "100%";
+    // REMOVAL OF TEMPLATE HEADER, NAV, MARGIN, PADDING
+    const templateHeader = document.querySelector(".global-navigation");
+    const pageContainer = document.getElementById("page-content");
+    const htmlContainer = document.querySelector(".module-htmlcontainer");
+    
+    templateHeader.style.display = "none";
+    pageContainer.style.margin = "0px";
+    pageContainer.style.padding = "0px";
+    htmlContainer.style.setProperty('padding', '0px', 'important');
+    
+    // FOOTER REMOVAL NOT WORKING ATM
+    // const templateFooter = document.querySelector(".global-footer");
+    // templateFooter.style.visibility = "hidden";
+    
+    // IF NAVBAR PRESENT
+    // const mobileNavbar = document.querySelector(".mobile-navbar-component").querySelector(".navbar");        
+    // const getNavbarHeight = () => mobileNavbar.offsetHeight;
+    // console.log(getNavbarHeight());
+    
+    // IF TABLET
+    pageContainer.style.width = "100%";
 </script> -->
 
 
 <!-- CASES SLIDER -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const scrollContainer = document.querySelector('.coe-cases__scroll-container');
-  const casesItems = document.querySelectorAll('.coe-cases__item');
-  const tabs = document.querySelectorAll('.coe-cases__tab');
+    document.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.querySelector('.coe-cases__scroll-container');
+    const casesItems = document.querySelectorAll('.coe-cases__item');
+    const tabs = document.querySelectorAll('.coe-cases__tab');
 
-  // Function to scroll to a specific item
-  function scrollToItem(index) {
-      const item = casesItems[index];
-      const itemOffset = item.offsetLeft + item.offsetWidth / 2 - scrollContainer.offsetWidth / 2;
-      scrollContainer.scrollTo({
-          left: itemOffset,
-          behavior: 'smooth'
-      });
-  }
+    // Function to scroll to a specific item
+    function scrollToItem(index) {
+        const item = casesItems[index];
+        const itemOffset = item.offsetLeft + item.offsetWidth / 2 - scrollContainer.offsetWidth / 2;
+        scrollContainer.scrollTo({
+            left: itemOffset,
+            behavior: 'smooth'
+        });
+    }
 
-  // Add click event listeners to tabs
-  tabs.forEach((tab, index) => {
-      tab.addEventListener('click', (e) => {
-          e.preventDefault();
-          scrollToItem(index);
-      });
-  });
+    // Add click event listeners to tabs
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            scrollToItem(index);
+        });
+    });
 
-  // Function to update active tab based on scroll position
-  function updateActiveTab() {
-      let minDistance = Infinity;
-      let activeIndex = 0;
+    // Function to update active tab based on scroll position
+    function updateActiveTab() {
+        let minDistance = Infinity;
+        let activeIndex = 0;
 
-      const containerRect = scrollContainer.getBoundingClientRect();
-      const containerCenter = containerRect.left + containerRect.width / 2;
+        const containerRect = scrollContainer.getBoundingClientRect();
+        const containerCenter = containerRect.left + containerRect.width / 2;
 
-      casesItems.forEach((item, index) => {
-          const itemRect = item.getBoundingClientRect();
-          const itemCenter = itemRect.left + itemRect.width / 2;
-          const distance = Math.abs(containerCenter - itemCenter);
+        casesItems.forEach((item, index) => {
+            const itemRect = item.getBoundingClientRect();
+            const itemCenter = itemRect.left + itemRect.width / 2;
+            const distance = Math.abs(containerCenter - itemCenter);
 
-          if (distance < minDistance) {
-              minDistance = distance;
-              activeIndex = index;
-          }
-      });
+            if (distance < minDistance) {
+                minDistance = distance;
+                activeIndex = index;
+            }
+        });
 
-      // Update active class on tabs
-      tabs.forEach((tab, index) => {
-          if (index === activeIndex) {
-              tab.classList.add('coe-cases__tab--active');
-          } else {
-              tab.classList.remove('coe-cases__tab--active');
-          }
-      });
-  }
+        // Update active class on tabs
+        tabs.forEach((tab, index) => {
+            if (index === activeIndex) {
+                tab.classList.add('coe-cases__tab--active');
+            } else {
+                tab.classList.remove('coe-cases__tab--active');
+            }
+        });
+    }
 
 
-      // Listen to scroll events
-      scrollContainer.addEventListener('scroll', updateActiveTab);
+        // Listen to scroll events
+        scrollContainer.addEventListener('scroll', updateActiveTab);
 
-      // Update active tab on window resize
-      window.addEventListener('resize', updateActiveTab);
+        // Update active tab on window resize
+        window.addEventListener('resize', updateActiveTab);
 
-      // Initial active tab update
-      updateActiveTab();
-  });
+        // Initial active tab update
+        updateActiveTab();
+    });
 </script>
 
 
 <!-- PEOPLE SLIDER -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const scrollContainer = document.querySelector('.coe-people__scroll-container');
-  const peopleItems = document.querySelectorAll('.coe-people__item');
-  const tabs = document.querySelectorAll('.coe-people__tab');
+    document.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.querySelector('.coe-people__scroll-container');
+    const peopleItems = document.querySelectorAll('.coe-people__item');
+    const tabs = document.querySelectorAll('.coe-people__tab');
 
-  // Function to scroll to a specific item
-  function scrollToItem(index) {
-      const item = peopleItems[index];
-      const itemOffset = item.offsetLeft + item.offsetWidth / 2 - scrollContainer.offsetWidth / 2;
-      scrollContainer.scrollTo({
-          left: itemOffset,
-          behavior: 'smooth'
-      });
-  }
+    // Function to scroll to a specific item
+    function scrollToItem(index) {
+        const item = peopleItems[index];
+        const itemOffset = item.offsetLeft + item.offsetWidth / 2 - scrollContainer.offsetWidth / 2;
+        scrollContainer.scrollTo({
+            left: itemOffset,
+            behavior: 'smooth'
+        });
+    }
 
-  // Add click event listeners to tabs
-  tabs.forEach((tab, index) => {
-      tab.addEventListener('click', (e) => {
-          e.preventDefault();
-          scrollToItem(index);
-      });
-  });
+    // Add click event listeners to tabs
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            scrollToItem(index);
+        });
+    });
 
-  // Function to update active tab based on scroll position
-  function updateActiveTab() {
-      let minDistance = Infinity;
-      let activeIndex = 0;
+    // Function to update active tab based on scroll position
+    function updateActiveTab() {
+        let minDistance = Infinity;
+        let activeIndex = 0;
 
-      const containerRect = scrollContainer.getBoundingClientRect();
-      const containerCenter = containerRect.left + containerRect.width / 2;
+        const containerRect = scrollContainer.getBoundingClientRect();
+        const containerCenter = containerRect.left + containerRect.width / 2;
 
-      peopleItems.forEach((item, index) => {
-          const itemRect = item.getBoundingClientRect();
-          const itemCenter = itemRect.left + itemRect.width / 2;
-          const distance = Math.abs(containerCenter - itemCenter);
+        peopleItems.forEach((item, index) => {
+            const itemRect = item.getBoundingClientRect();
+            const itemCenter = itemRect.left + itemRect.width / 2;
+            const distance = Math.abs(containerCenter - itemCenter);
 
-          if (distance < minDistance) {
-              minDistance = distance;
-              activeIndex = index;
-          }
-      });
+            if (distance < minDistance) {
+                minDistance = distance;
+                activeIndex = index;
+            }
+        });
 
-      // Update active class on tabs
-      tabs.forEach((tab, index) => {
-          if (index === activeIndex) {
-              tab.classList.add('coe-people__tab--active');
-          } else {
-              tab.classList.remove('coe-people__tab--active');
-          }
-      });
-  }
+        // Update active class on tabs
+        tabs.forEach((tab, index) => {
+            if (index === activeIndex) {
+                tab.classList.add('coe-people__tab--active');
+            } else {
+                tab.classList.remove('coe-people__tab--active');
+            }
+        });
+    }
 
 
-      // Listen to scroll events
-      scrollContainer.addEventListener('scroll', updateActiveTab);
+        // Listen to scroll events
+        scrollContainer.addEventListener('scroll', updateActiveTab);
 
-      // Update active tab on window resize
-      window.addEventListener('resize', updateActiveTab);
+        // Update active tab on window resize
+        window.addEventListener('resize', updateActiveTab);
 
-      // Initial active tab update
-      updateActiveTab();
-  });
+        // Initial active tab update
+        updateActiveTab();
+    });
 </script>
