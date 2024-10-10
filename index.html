@@ -127,11 +127,19 @@
         height: 300px;
     }
 
-    .coe-media-background {
+    /* .coe-media-background {
         position: absolute;
         width: 100%;
         height: 100%;
         background-color: black;
+    } */
+     
+    .coe-media-background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background-color: var(--background-color);
     }
     
     .coe-hero__content {
@@ -572,7 +580,7 @@
         <img src="/images/logo.svg" alt="KPMG logotype">
     </div>
     <section class="coe-hero">
-        <video-js 
+        <!-- <video-js 
             autoplay muted loop playsinline
             class="coe-media-background"
             data-account="1752604059001"
@@ -581,7 +589,10 @@
             data-video-id="5045678907001"
             class="vjs-fluid"
             style="object-fit: cover;">
-        </video-js>
+        </video-js> -->
+        <video class="coe-media-background" autoplay muted loop playsinline>
+            <source src="/videos/hero.mp4">
+        </video>
         <div class="coe-hero__content">
             <h1 class="coe-hero__headline">Commercial Vehicles<br/>Center of Exellence</h1>
             <!-- <div class="coe-hero__cta-container">
@@ -592,7 +603,7 @@
     </section>
     <section class="coe-challenges" id="coe-challenges-id">
         <h2 class="coe-challenges__headline">Industry Challenges</h2>
-        <h3 class="coe-gradient-text">A sustainable automotive future.</h3>
+        <h3 class="coe-gradient-text">A sustainable</br>automotive future.</h3>
         <p class="coe-challenges__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ad pariatur ea quod labore consequuntur, sequi eius dolorum, mollitia reiciendis error consequatur!</p>
         <ul class="coe-challenges__list">
             <li class="coe-challenges__item">
@@ -624,8 +635,8 @@
         </ul>
     </section>
     <section class="coe-cases">
-        <h2>Cases</h2>
-        <h3 class="coe-gradient-text">Uncover KPMG's reports and trends</h3>
+        <h2>Reports and trends</h2>
+        <h3 class="coe-gradient-text">Uncover KPMG's reports and trends.</h3>
         <div class="coe-cases__wrapper">
             <div class="coe-cases__scroll-container">
                 <ul class="coe-cases__list">
@@ -675,53 +686,54 @@
     </section>
     <section class="coe-offerings">
         <h2>Offerings</h2>
-        <h3 class="coe-gradient-text">What we can help with</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti neque, tempore ullam facilis illum doloremque velit rem sapiente.</p>
+        <h3 class="coe-gradient-text">What we can help with.</h3>
+        <p>Our Swedish practice is integrated into KPMG's worldwide automotive advisory network. This is how we can help you.</p>
         <ul class="coe-offerings__list">
             <li class="coe-offerings__item">
                 <img src="/images/icons/strategy.png" alt="">
-                <h4 class="coe-gradient-text">Corporate Strategy</h4>
+                <h4>Corporate Strategy</h4>
             </li>
             <li class="coe-offerings__item">
                 <img src="/images/icons/sustainability.png" alt="">
-                <h4 class="coe-gradient-text">Sustainability</h4>
+                <h4>Sustainability</h4>
             </li>
             <li class="coe-offerings__item">
                 <img src="/images/icons/customer.png" alt="">
-                <h4 class="coe-gradient-text">Customer Centricity</h4>
+                <h4>Customer Centricity</h4>
             </li>
             <li class="coe-offerings__item">
                 <img src="/images/icons/deals.png" alt="">
-                <h4 class="coe-gradient-text">Deal Advisory</h4>
+                <h4>Deal Advisory</h4>
             </li>
             <li class="coe-offerings__item">
                 <img src="/images/icons/tech.png" alt="">
-                <h4 class="coe-gradient-text">Technology, AI & Analytics</h4>
+                <h4>Technology, AI & Analytics</h4>
             </li>
             <li class="coe-offerings__item">
                 <img src="/images/icons/restructuring.png" alt="">
-                <h4 class="coe-gradient-text">Restructuring & Turnaround</h4>
+                <h4>Restructuring & Turnaround</h4>
             </li>
             <li class="coe-offerings__item">
                 <img src="/images/icons/tax.png" alt="">
-                <h4 class="coe-gradient-text">Tax</h4>
+                <h4>Tax</h4>
             </li>
             <li class="coe-offerings__item">
                 <img src="/images/icons/finance.png" alt="">
-                <h4 class="coe-gradient-text">Finance</h4>
+                <h4>Finance</h4>
             </li>
             <li class="coe-offerings__item">
                 <img src="/images/icons/transformation.png" alt="">
-                <h4 class="coe-gradient-text">Transformation & Supply Chain Optimization</h4>
+                <h4>Transformation & Supply Chain Optimization</h4>
             </li>
             <li class="coe-offerings__item">
                 <img src="/images/icons/reporting.png" alt="">
-                <h4 class="coe-gradient-text">Regulatory Advisory & Reporting</h4>
+                <h4>Regulatory Advisory & Reporting</h4>
             </li>
         </ul>
     </section>
     <section class="coe-partners">
-        <h2 class="coe-partners__headline">Our Partners</h2>
+        <h2 class="coe-partners__headline">Strategic Alliance</h2>
+        <h3>Strategic partners.</h3>
         <div class="coe-infinite-scroll__container">
             <div class="coe-infinite-scroll__slider">
                 <div class="coe-partner__item">
@@ -771,7 +783,7 @@
         </div>
     </section>
     <section class="coe-people">
-        <h2>Our Team</h2>
+        <h2>Our team</h2>
         <h3 class="coe-gradient-text">Let our experts help you.</h3>
         <div class="coe-people__wrapper">
             <div class="coe-people__scroll-container">
